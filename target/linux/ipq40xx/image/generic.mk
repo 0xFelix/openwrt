@@ -780,6 +780,25 @@ define Device/qxwlan_e2600ac-c2
 endef
 TARGET_DEVICES += qxwlan_e2600ac-c2
 
+define Device/teltonika_rutx10
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := Teltonika
+	DEVICE_MODEL := RUTX10
+	SOC := qcom-ipq4018
+	DEVICE_DTS_CONFIG := config@5
+	KERNEL_INSTALL := 1
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	FILESYSTEMS := squashfs
+	SUPPORTED_DEVICES := teltonika,rutx10 teltonika,rutx
+	IMAGE_METADATA := "device_code": [".*"], "hwver": [".*"], "batch": [".*"], "serial": [".*"]
+	IMAGES := nand-factory.bin nand-sysupgrade.bin
+	IMAGE/nand-factory.bin := append-ubi | qsdk-ipq-factory-nand | append-metadata
+	DEVICE_PACKAGES := ipq-wifi-teltonika_rutx kmod-bluetooth
+endef
+TARGET_DEVICES += teltonika_rutx10
+
 define Device/unielec_u4019-32m
 	$(call Device/FitImage)
 	DEVICE_VENDOR := Unielec
