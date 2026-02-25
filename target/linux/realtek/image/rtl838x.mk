@@ -215,6 +215,14 @@ define Device/linksys_lgs310c
 endef
 TARGET_DEVICES += linksys_lgs310c
 
+define Device/linksys_lgs310mpc
+  $(Device/linksys_lgs310c)
+  DEVICE_MODEL := LGS310MPC
+  LINKSYS_MODEL := 60402010
+  DEVICE_PACKAGES += realtek-poe
+endef
+TARGET_DEVICES += linksys_lgs310mpc
+
 # "NGE" refers to the uImage magic
 define Device/netgear_nge
   $(Device/uimage-rt-loader)

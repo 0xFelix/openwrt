@@ -123,6 +123,7 @@ realtek_setup_macs()
 	inaba,aml2-17gp|\
 	iodata,bsh-g24mb|\
 	linksys,lgs310c|\
+	linksys,lgs310mpc|\
 	linksys,lgs328c|\
 	linksys,lgs352c|\
 	netgear,gs750e|\
@@ -210,6 +211,9 @@ realtek_setup_poe()
 		ucidef_set_poe 370 "lan8 lan7 lan6 lan5 lan4 lan3 lan2 lan1 lan16 lan15 lan14 lan13 lan12 lan11 lan10 lan9 lan24 lan23
 				lan22 lan21 lan20 lan19 lan18 lan17 lan32 lan31 lan30 lan29 lan28 lan27 lan26 lan25 lan40 lan39 lan38 lan37
 				lan36 lan35 lan34 lan33 lan48 lan47 lan46 lan45 lan44 lan43 lan42 lan41"
+		;;
+	linksys,lgs310mpc)
+		ucidef_set_poe 110 "$(filter_port_list "$lan_list" "lan9 lan10")"
 		;;
 	netgear,gs110tup-v1)
 		ucidef_set_poe 240 "$(filter_port_list "$lan_list" "lan9 lan10")"

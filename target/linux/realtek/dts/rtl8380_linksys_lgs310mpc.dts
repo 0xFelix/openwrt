@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+#include "rtl8380_linksys_lgs310x.dtsi"
+
+/ {
+	compatible = "linksys,lgs310mpc", "realtek,rtl838x-soc";
+	model = "Linksys LGS310MPC";
+
+	leds: leds {
+		led_poe_max: led-2 {
+			label = "amber:poe-max";
+			gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+		};
+	};
+
+	keys: keys {
+		led_mode {
+			label = "led-mode";
+			gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+			linux,code = <BTN_0>;
+		};
+	};
+};
+
+&gpio1 {
+	poe_enable {
+		gpio-hog;
+		gpios = <1 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "poe-enable";
+	};
+};
